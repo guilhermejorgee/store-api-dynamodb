@@ -42,8 +42,4 @@ public class OrderUserController {
 		return ResponseEntity.ok(orderService.getOrdersUser(idUser));
 	}
 	
-/*	public ResponseEntity<String> updateOrder(){
-		
-	}*/
-	
 }

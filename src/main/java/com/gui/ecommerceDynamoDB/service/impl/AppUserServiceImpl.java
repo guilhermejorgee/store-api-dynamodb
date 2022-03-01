@@ -30,10 +30,8 @@ public class AppUserServiceImpl implements AppUserService {
 	}
 	
 	@Override
-	public AppUserDto getUser(String idUser, boolean address) {
-		
-		AppUser user = findUser(idUser).orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
-			
+	public AppUserDto getUser(String idUser, boolean address) {		
+		AppUser user = findUser(idUser).orElseThrow(() -> new UsernameNotFoundException("User Not Found"));			
 		if(address) {
 			return new AppUserWithAddressDto(user);
 		}
@@ -49,20 +47,16 @@ public class AppUserServiceImpl implements AppUserService {
 	}
 	
 	@Override
-	public AppUserWithAddressDto setAddressUser(AddressUser address, String idUser) {
-		
+	public AppUserWithAddressDto setAddressUser(AddressUser address, String idUser) {	
 		AppUser user = findUser(idUser).orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
-
 		user.addAddress(address);
 		userRepository.saveUserDb(user);
 		return new AppUserWithAddressDto(user);
 	}
 	
 	@Override
-	public String updateUser(AppUserFormUpdate form) {
-		
+	public String updateUser(AppUserFormUpdate form) {	
 		AppUser user = findUser(form.getUserId()).orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
-	
 		user.update(form);
 		userRepository.saveUserDb(user);
 		return "Atualizado com sucesso";

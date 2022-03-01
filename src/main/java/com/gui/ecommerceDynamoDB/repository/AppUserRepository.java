@@ -33,8 +33,7 @@ public class AppUserRepository {
 		return Optional.ofNullable(mapper.load(AppUser.class, hash, sort));
 	}
 
-	public List<AppUser> getUsersDb() {
-		
+	public List<AppUser> getUsersDb() {	
 		Map<String, AttributeValue> attributes = new HashMap<>();
 		attributes.put(":val1", new AttributeValue().withS(IdentificationTagsDB.ENTITY_USER_TABLE));
 		attributes.put(":val2", new AttributeValue().withS(IdentificationTagsDB.ID_USER_TABLE));
@@ -45,7 +44,6 @@ public class AppUserRepository {
 				.withIndexName(IdentificationTagsDB.GSI_INVERSE)
 				.withConsistentRead(false);
 			return mapper.query(AppUser.class, query);
-
 	}
 	
 	
